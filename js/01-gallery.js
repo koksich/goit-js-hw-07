@@ -50,21 +50,20 @@ function openLargeImageModal(event) {
   }
 
   const instance = basicLightbox.create(
-    `<img src="${event.target.dataset.source}" width="1280" height="860">`
-    // {
-    //   onShow: () => {
-    //     // обираємо keydown, тому що keypress вісдлідковує тільки натискання на клавіші, які генерують символ
-    //     document.addEventListener("keydown", onEscapePress);
-    //   },
-    //   onClose: () => {
-    //     document.removeEventListener("keydown", onEscapePress);
-    //   },
-    // }
+    `<img src="${event.target.dataset.source}" width="1280" height="860">`,
+    {
+      onShow: () => {
+        // обираємо keydown, тому що keypress вісдлідковує тільки натискання на клавіші, які генерують символ
+        document.addEventListener("keydown", onEscapePress);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", onEscapePress);
+      },
+    }
   );
   instance.show();
 
-  //     function onEscapePress(event) {
-  //     if (event.code === 'Escape')
-  //         instance.close();
-  //   }
+  function onEscapePress(event) {
+    if (event.code === "Escape") instance.close();
+  }
 }
